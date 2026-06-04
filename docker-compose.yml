@@ -1,0 +1,13 @@
+services:
+  social-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: social-bot
+    env_file:
+      - .env
+    volumes:
+      - .:/app:z
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: ["python", "src/main.py"]

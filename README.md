@@ -49,15 +49,23 @@ python src/main.py
 
 ## Run with Docker
 
-Build image:
+Build and run with Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+The Compose file:
+
+- builds the image from the local [Dockerfile](Dockerfile)
+- loads variables from [.env](.env)
+- mounts the project so the generated report is written back to the workspace
+- maps `host.docker.internal` for Ollama access on Linux
+
+If you want to run the container directly without Compose, you can still use:
 
 ```bash
 docker build -t social-bot .
-```
-
-Run container with env file and mount current project:
-
-```bash
 docker run --rm --env-file .env -v $(pwd):/app:z social-bot
 ```
 
